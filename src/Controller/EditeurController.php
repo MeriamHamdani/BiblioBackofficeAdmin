@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-//#[Route('/admin/editeur')]
+#[Route('/admin/editeur')]
 class EditeurController extends AbstractController
 {
-    #[Route('/editeur', name: 'editeur_index', methods: ['GET'])]
+    #[Route('/', name: 'editeur_index', methods: ['GET'])]
     public function index(EditeurRepository $editeurRepository): Response
     {
         return $this->render('editeur/index.html.twig', [
@@ -76,7 +76,7 @@ class EditeurController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'editeur_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'editeur_delete', methods: ['POST'])]
     public function delete(Request $request, Editeur $editeur): Response
     {
         if ($this->isCsrfTokenValid('delete'.$editeur->getId(), $request->request->get('_token'))) {

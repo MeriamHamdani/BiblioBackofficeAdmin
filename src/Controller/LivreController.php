@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-//#[Route('/admin/livre')]
+#[Route('/admin/livre')]
 class LivreController extends AbstractController
 {
-    #[Route('/livre', name: 'livre_index', methods: ['GET'])]
+    #[Route('/', name: 'livre_index', methods: ['GET'])]
     public function index(LivreRepository $livreRepository): Response
     {
         return $this->render('livre/index.html.twig', [
@@ -76,7 +76,7 @@ class LivreController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'livre_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'livre_delete', methods: ['POST'])]
     public function delete(Request $request, Livre $livre): Response
     {
         if ($this->isCsrfTokenValid('delete'.$livre->getId(), $request->request->get('_token'))) {

@@ -10,15 +10,15 @@ use App\Entity\Livre;
 use App\Entity\Categorie;
 use App\Entity\Editeur;
 
-//#[Route('/admin/accueil')]
+#[Route('/admin')]
 class AccueilController extends AbstractController
 {
-    #[Route('/accueil', name: 'accueil')]
+    #[Route('/', name: 'accueil')]
     public function index(): Response
     {
         $nbAuteurs =count($this->getDoctrine()->getRepository(Auteur::class)->findAll());
         $nbLivres =count($this->getDoctrine()->getRepository(Livre::class)->findAll());
-        $nbCatégories =count($this->getDoctrine()->getRepository(Categorie::class)->findAll());
+        $nbCategories =count($this->getDoctrine()->getRepository(Categorie::class)->findAll());
         $nbEditeurs =count($this->getDoctrine()->getRepository(Editeur::class)->findAll());
         return $this->render('accueil/index.html.twig', [
             'titre' => 'Accueil',
@@ -26,7 +26,7 @@ class AccueilController extends AbstractController
             'lien' => $this->generateUrl('accueil'),
             'nbAuteurs' => $nbAuteurs,
             'nbLivres'=>$nbLivres,
-            'nbCatégories'=>$nbCatégories,
+            'nbCatégories'=>$nbCategories,
             'nbEditeurs'=>$nbEditeurs,
         ]);
       

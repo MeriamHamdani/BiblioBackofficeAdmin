@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+#[Route("/admin/auteur")]
 class AuteurController extends AbstractController
 {
     #[Route('/auteur', name: 'auteur_index', methods: ['GET'])]
@@ -76,7 +76,7 @@ class AuteurController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'auteur_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'auteur_delete', methods: ['POST'])]
     public function delete(Request $request, Auteur $auteur): Response
     {
         if ($this->isCsrfTokenValid('delete'.$auteur->getId(), $request->request->get('_token'))) {
