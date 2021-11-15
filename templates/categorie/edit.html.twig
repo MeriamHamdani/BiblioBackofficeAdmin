@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer Catégorie{% endblock %}
+
+{% block body %}
+    <h1>Editer Catégorie</h1>
+
+    {{ include('categorie/_form.html.twig', {'button_label': 'Valider'}) }} {{ include('categorie/_delete_form.html.twig') }} <br>
+
+    <a href="{{ path('categorie_index') }}"><h4 class="mdi mdi-arrow-left-box">Retour</h4></a>
+
+    
+{% endblock %}

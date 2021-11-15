@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre{% endblock %}
+
+{% block body %}
+    <h1>Livre</h1>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>#</th>
+                <td>{{ livre.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ livre.titre }}</td>
+            </tr>
+            <tr>
+                <th>Isbn</th>
+                <td>{{ livre.isbn }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ livre.prix }}</td>
+            </tr>
+            <tr>
+                <th>Quantité en Stock</th>
+                <td>{{ livre.qteStock }}</td>
+            </tr>
+            <tr>
+                <th>Date d'édition</th>
+                <td>{{ livre.dateEdition ? livre.dateEdition|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Editeur</th>
+                <td>{{ livre.editeur.nom }}</td>
+            </tr>
+             <tr>
+                <th>Catégorie</th>
+                <td>{{ livre.categorie.nom }}</td>
+            </tr>
+            <tr>
+                <th>Auteurs</th>
+                <td>
+                    <table class="table table-bordered">
+                        <tr>
+                            {% for auteur in livre.auteurs  %}
+                                <td> {{auteur.prenom}}  {{auteur.nom}}</td>
+                            {%endfor%}
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <a href="{{ path('livre_edit', {'id': livre.id}) }}" class="btn btn-success text-white mdi mdi-lead-pencil"> Editer</a><br><br> {{ include('livre/_delete_form.html.twig') }}
+    <br><a href="{{ path('livre_index') }}"><h4 class="mdi mdi-arrow-left-box">Retour</h4></a>
+    
+{% endblock %}

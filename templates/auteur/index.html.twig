@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Auteurs {% endblock %}
+
+{% block body %}
+    <h1>Auteurs </h1>
+    <div class="text-end upgrade-btn">
+        <a href="{{path('auteur_new')}}" class="btn btn-danger text-white"> <i class="fa fa-plus-square"></i> Ajouter nouveau Auteur</a><br>
+    </div> <br> 
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Téléphone</th>
+                <th>Date de naissance</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i,auteur in auteurs %}
+            <tr>
+                <td>{{ i + 1 }}</td>
+                <td>{{ auteur.nom }}</td>
+                <td>{{ auteur.prenom }}</td>
+                <td>{{ auteur.telephone }}</td>
+                <td>{{ auteur.datenaiss ? auteur.datenaiss|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('auteur_show', {'id': auteur.id}) }}"><i class=" w-10 mdi mdi-eye"></i></a>
+                    <a href="{{ path('auteur_edit', {'id': auteur.id}) }}"><i class="w-10 mdi mdi-pencil-circle"></i></a>
+                    <a href="{{ path('auteur_delete_2', {'id': auteur.id}) }}"><i class="w-10 mdi mdi-delete-circle"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Pas d'enregistrements trouvés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

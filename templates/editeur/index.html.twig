@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editeurs {% endblock %}
+
+{% block body %}
+    <h1>Editeurs</h1>
+    <div class="text-end upgrade-btn">
+        <a href="{{path('editeur_new')}}" class="btn btn-danger text-white"> <i class="fa fa-plus-square"></i> Ajouter nouveau Editeur</a><br>
+    </div> <br> 
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Pays</th>
+                <th>Téléphone</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i,editeur in editeurs %}
+            <tr>
+                <td>{{ i + 1 }}</td>
+                <td>{{ editeur.nom }}</td>
+                <td>{{ editeur.adress }}</td>
+                <td>{{ editeur.pays }}</td>
+                <td>{{ editeur.telephone }}</td>
+                <td>
+                    <a href="{{ path('editeur_show', {'id': editeur.id}) }}"><i class="mdi mdi-eye"></i></a>
+                    <a href="{{ path('editeur_edit', {'id': editeur.id}) }}"><i class="mdi mdi-pencil-circle"></i></a>
+                     <a href="{{ path('editeur_delete_2', {'id': editeur.id}) }}"><i class="mdi mdi-delete-circle"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Pas d'enregistrements touvés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

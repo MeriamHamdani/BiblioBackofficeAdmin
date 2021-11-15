@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Auteur{% endblock %}
+
+{% block body %}
+    <h1>Auteur</h1>
+
+    <table  class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>#</th>
+                <td>{{ auteur.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ auteur.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ auteur.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ auteur.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Date de naissance </th>
+                <td>{{ auteur.datenaiss ? auteur.datenaiss|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <a href="{{ path('auteur_edit', {'id': auteur.id}) }}"class="btn btn-success text-white mdi mdi-lead-pencil"> Editer</a><br> <br>{{ include('auteur/_delete_form.html.twig') }}
+    <br><a href="{{ path('auteur_index') }}"><h4 class="mdi mdi-arrow-left-box">Retour</h4></a>
+    
+{% endblock %}
